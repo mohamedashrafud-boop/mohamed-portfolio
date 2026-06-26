@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mohamed Ashraf — UI/UX Designer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#021014;
+    --bg-2:#03171c;
+    --ink:#e8f5fa;
+    --ink-2:#a8c5d2;
+    --muted:#5a7d8a;
+    --line:rgba(232,245,250,.10);
+    --accent:#00c5a6;
+    --green:#00c5a6;
+    --serif:"Playfair Display","Instrument Serif", Georgia, serif;
+    --sans:"Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --card:#04181e;
+  }
+
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--ink);color:var(--bg)}
+
+  .container{max-width:1320px;margin:0 auto;padding:0 40px}
+  @media (max-width:780px){.container{padding:0 22px}}
+
+  /* TOPBAR */
+  .topbar{padding:18px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .topbar-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .topbar a{color:var(--ink-2);text-decoration:none;transition:color .2s}
+  .topbar a:hover{color:var(--ink)}
+  .topbar-label{color:var(--muted);margin-right:6px}
+  .topbar-loc{display:flex;align-items:center;gap:18px}
+  .topbar-time{font-variant-numeric:tabular-nums}
+
+  /* NAV */
+  .nav{padding:22px 0;position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:border-color .3s, padding .3s;border-bottom:1px solid transparent}
+  .nav.scrolled{border-bottom-color:var(--line);padding:14px 0}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{text-decoration:none;display:inline-block}
+  .logo svg{height:50px;width:auto;display:block}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500}
+  .nav-links a{color:var(--ink);text-decoration:none;position:relative;padding:6px 0;transition:color .2s}
+  .nav-links a:hover{color:var(--green)}
+  .nav-cta{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;background:var(--green);color:#021014;font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid var(--green);transition:all .25s}
+  .nav-cta:hover{background:transparent;color:var(--green)}
+  .nav-cta .pulse{width:7px;height:7px;border-radius:50%;background:#021014;box-shadow:0 0 0 0 rgba(2,16,20,.6);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(2,16,20,.55)}50%{box-shadow:0 0 0 7px rgba(2,16,20,0)}}
+
+  /* HERO */
+  .hero{position:relative;padding:60px 0 90px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+  .hero-text{position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--ink-2);font-size:14px;letter-spacing:.04em;margin-bottom:24px;animation:slideUp .9s .1s both}
+  .eyebrow::before{content:"";width:32px;height:1px;background:var(--ink-2)}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,100px);line-height:1.02;letter-spacing:-.02em;margin:0 0 28px;color:var(--ink)}
+  .hero h1 .it{font-style:italic;font-weight:400;color:var(--green)}
+  .hero h1 .word{display:inline-block;animation:slideUp 1s both;margin-right:6px}
+  .hero h1 .word:nth-child(1){animation-delay:.10s}
+  .hero h1 .word:nth-child(2){animation-delay:.22s}
+  .hero h1 .word:nth-child(3){animation-delay:.34s}
+  .hero h1 .word:nth-child(4){animation-delay:.46s}
+  .hero h1 .word:nth-child(5){animation-delay:.58s}
+  .hero h1 .word:nth-child(6){animation-delay:.70s}
+  .hero h1 .word:nth-child(7){animation-delay:.82s}
+  @keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-sub{font-size:18px;line-height:1.65;color:var(--ink-2);max-width:520px;margin:0 0 36px;animation:slideUp 1s .9s both}
+  .hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;animation:slideUp 1s 1.05s both}
+  .btn{display:inline-flex;align-items:center;gap:12px;padding:18px 30px;border-radius:999px;font-size:14.5px;font-weight:500;text-decoration:none;cursor:pointer;border:none;transition:transform .3s cubic-bezier(.2,.8,.2,1), background .25s, color .25s}
+  .btn-primary{background:var(--green);color:#021014}
+  .btn-primary:hover{transform:translateY(-3px);background:#00e0bc}
+  .btn-primary .arrow{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#021014;color:var(--green);transition:transform .3s}
+  .btn-secondary{background:transparent;color:var(--ink);border:1px solid rgba(232,245,250,.22)!important;display:inline-flex;align-items:center;gap:10px;padding:18px 26px;border-radius:999px;font-size:14.5px;font-weight:500;text-decoration:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .25s,border-color .25s,color .25s}
+  .btn-secondary:hover{transform:translateY(-3px);background:rgba(0,197,166,.12);border-color:var(--green)!important;color:var(--green)}
+  .btn-secondary svg{transition:transform .3s}
+  .btn-secondary:hover svg{transform:scale(1.08)}
+  .btn-primary:hover .arrow{transform:rotate(45deg)}
+  .btn-text{color:var(--ink);font-weight:500;text-decoration:none;font-size:14.5px;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink);padding-bottom:4px;transition:gap .25s}
+  .btn-text:hover{gap:14px}
+
+  /* hero photo */
+  .hero-photo-wrap{position:relative;animation:photoIn 1.2s .35s both}
+  @keyframes photoIn{from{opacity:0;transform:translateY(40px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .hero-photo{position:relative;border-radius:24px;overflow:hidden;background:var(--bg-2);aspect-ratio:4/5;width:100%;box-shadow:0 30px 80px -30px rgba(0,0,0,.35)}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .hero-photo:hover img{transform:scale(1.05)}
+  .photo-tag{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;font-size:12.5px;font-weight:600;color:#021014;backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);box-shadow:0 12px 30px -8px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.3);animation:floaty 4s ease-in-out infinite}
+  .photo-tag.tl{top:24px;left:-16px}
+  .photo-tag.tr{top:24px;right:-16px;background:rgba(0,197,166,.32);border-color:rgba(0,197,166,.5);color:#021014}
+  .photo-tag.bl{bottom:30px;left:-22px}
+  .photo-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(0,197,166,.22)}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .squiggle{position:absolute;color:var(--ink-2);opacity:.45;animation:wiggle 5s ease-in-out infinite}
+  .squiggle.s1{top:-30px;right:30%;width:90px;height:50px}
+  @keyframes wiggle{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(8px) rotate(6deg)}}
+
+  /* CLIENTS LOGOS STRIP */
+  .clients{padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .clients-head{text-align:center;color:var(--muted);font-size:14px;letter-spacing:.02em;margin-bottom:32px}
+  .clients-track{display:flex;align-items:center;gap:88px;animation:scroll 32s linear infinite;width:max-content}
+  .clients-mask{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .client-logo{font-family:var(--serif);font-style:italic;font-size:32px;color:var(--ink);opacity:.75;white-space:nowrap;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:10px;transition:opacity .3s}
+  .client-logo:hover{opacity:1}
+  .client-logo .mk{font-size:14px;font-style:normal;color:var(--muted);font-family:var(--sans);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+
+  /* SECTIONS */
+  .section{padding:120px 0;position:relative}
+  .section-head{margin-bottom:64px}
+  .section-tag{font-size:14px;color:var(--muted);letter-spacing:.04em;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+  .section-tag::before{content:"";width:32px;height:1px;background:var(--muted)}
+  .section-title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,72px);line-height:1.04;letter-spacing:-.015em;margin:0;max-width:1000px;color:var(--ink)}
+  .section-title .it{font-style:italic;color:var(--ink-2)}
+  .section-title .green{color:var(--green);font-style:italic}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
+  .reveal-stagger.in > *{opacity:1;transform:translateY(0)}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.05s}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.13s}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.21s}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.29s}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.37s}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.45s}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:24px}
+  .about-block{position:relative}
+  .about-block h4{font-family:var(--serif);font-weight:400;font-size:24px;font-style:italic;color:var(--green);margin:0 0 14px;letter-spacing:-.005em}
+  .about-block p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.7}
+  .about-cta{margin-top:48px}
+
+  /* SERVICES */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .service{position:relative;padding:36px 28px;border-radius:20px;background:var(--card);border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s;overflow:hidden}
+  .service::before{content:"";position:absolute;inset:auto auto -50% -50%;width:140%;height:140%;border-radius:50%;background:var(--green);opacity:0;transform:scale(.4);transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s;z-index:0}
+  .service:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:0 30px 60px -25px rgba(0,197,166,.2)}
+  .service:hover::before{opacity:.10;transform:scale(1)}
+  .service-icon{position:relative;z-index:1;width:64px;height:64px;border-radius:14px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;color:var(--ink);margin-bottom:24px;transition:transform .4s,background .3s}
+  .service:hover .service-icon{transform:rotate(-6deg) scale(1.06);background:var(--green);color:#021014}
+  .service-title{position:relative;z-index:1;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.15;letter-spacing:-.01em;margin:0 0 10px;color:var(--ink)}
+  .service-desc{position:relative;z-index:1;font-size:14.5px;color:var(--ink-2);line-height:1.6;margin:0 0 22px}
+  .service-arrow{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);color:var(--ink);transition:all .3s;text-decoration:none}
+  .service:hover .service-arrow{background:var(--ink);border-color:var(--ink);color:var(--bg);transform:rotate(-45deg)}
+
+  /* PROCESS */
+  .process-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+  .process-img{aspect-ratio:1/1;border-radius:24px;background:linear-gradient(160deg,#0a2228 0%,#021014 60%,#04181e 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+  .process-img::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(232,245,250,.07) 1px, transparent 0);background-size:22px 22px;pointer-events:none}
+  .process-img::after{content:"";position:absolute;width:60%;height:60%;background:radial-gradient(circle, rgba(0,197,166,.22), transparent 65%);top:-15%;right:-15%;filter:blur(20px);pointer-events:none}
+
+  .pm-browser{position:absolute;width:62%;left:50%;top:50%;transform:translate(-50%,-46%) rotate(-3deg);background:#0c2127;border:1px solid rgba(232,245,250,.16);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);animation:pm-float 6s ease-in-out infinite}
+  .pm-browser .bar{display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(232,245,250,.05);border-bottom:1px solid rgba(232,245,250,.08)}
+  .pm-browser .dot{width:7px;height:7px;border-radius:50%;background:rgba(232,245,250,.18)}
+  .pm-browser .dot.g{background:#00c5a6}
+  .pm-browser .body{padding:14px 14px 18px}
+  .pm-browser .row{height:7px;border-radius:3px;background:rgba(232,245,250,.12);margin-bottom:7px}
+  .pm-browser .row.w1{width:62%}.pm-browser .row.w2{width:88%}.pm-browser .row.w3{width:46%}
+  .pm-browser .row.lg{height:10px;background:rgba(0,197,166,.45);margin-top:14px;width:34%}
+  .pm-browser .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .pm-browser .ph{aspect-ratio:4/3;border-radius:6px;background:linear-gradient(135deg,#0e2a31,#04181e);border:1px solid rgba(232,245,250,.08)}
+  .pm-browser .ph:nth-child(2){background:linear-gradient(135deg,#0a2228,#003a32)}
+
+  .pm-palette{position:absolute;bottom:8%;left:6%;background:#0c2127;border:1px solid rgba(232,245,250,.14);border-radius:12px;padding:12px 14px;box-shadow:0 20px 40px -16px rgba(0,0,0,.55);animation:pm-float-2 7s ease-in-out infinite;transform:rotate(-6deg);min-width:130px}
+  .pm-palette .lbl{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,245,250,.55);margin-bottom:8px;font-weight:600}
+  .pm-palette .sw{display:flex;gap:6px}
+  .pm-palette .s{width:24px;height:24px;border-radius:6px;border:1px solid rgba(232,245,250,.08)}
+
+  .pm-type{position:absolute;top:10%;right:6%;background:#0c2127;border:1px solid rgba(232,245,250,.14);border-radius:12px;padding:14px 16px;box-shadow:0 20px 40px -16px rgba(0,0,0,.55);animation:pm-float-3 5.5s ease-in-out infinite;transform:rotate(5deg);min-width:120px}
+  .pm-type .a{font-family:var(--serif);font-size:32px;line-height:1;color:#e8f5fa;font-style:italic;display:block;margin-bottom:2px}
+  .pm-type .b{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,245,250,.55);font-weight:600}
+
+  .pm-cursor{position:absolute;bottom:18%;right:14%;color:#00c5a6;animation:pm-cursor-move 6s ease-in-out infinite;filter:drop-shadow(0 4px 12px rgba(0,197,166,.4))}
+  .pm-cursor .tip{position:absolute;top:14px;left:14px;background:#00c5a6;color:#021014;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;white-space:nowrap;font-family:var(--sans)}
+
+  .pm-blob{position:absolute;width:38%;height:38%;border-radius:50%;background:radial-gradient(circle, rgba(0,197,166,.5), transparent 70%);bottom:-10%;left:-8%;filter:blur(40px);pointer-events:none;animation:pm-glow 6s ease-in-out infinite}
+
+  @keyframes pm-float{0%,100%{transform:translate(-50%,-46%) rotate(-3deg)}50%{transform:translate(-50%,-50%) rotate(-3deg)}}
+  @keyframes pm-float-2{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(-6deg) translateY(-10px)}}
+  @keyframes pm-float-3{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(5deg) translateY(-8px)}}
+  @keyframes pm-cursor-move{0%,100%{transform:translate(0,0)}50%{transform:translate(-14px,-10px)}}
+  @keyframes pm-glow{0%,100%{opacity:.7}50%{opacity:1}}
+  .process-list{display:flex;flex-direction:column;gap:32px}
+  .process-step{display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;padding-bottom:30px;border-bottom:1px solid var(--line);transition:transform .4s}
+  .process-step:last-child{border-bottom:0;padding-bottom:0}
+  .process-step:hover{transform:translateX(8px)}
+  .process-icon{width:64px;height:64px;border-radius:50%;background:var(--green);color:#021014;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .4s}
+  .process-step:hover .process-icon{transform:rotate(-12deg) scale(1.06)}
+  .process-step h4{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.2;letter-spacing:-.01em;margin:0 0 8px;color:var(--ink)}
+  .process-step p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.65}
+
+  /* WORK EXPERIENCE */
+  .xp{display:flex;flex-direction:column}
+  .xp-row{display:grid;grid-template-columns:200px 1fr auto;gap:48px;padding:36px 12px;border-top:1px solid var(--line);align-items:start;transition:padding .35s, background .35s}
+  .xp-row:last-child{border-bottom:1px solid var(--line)}
+  .xp-row:hover{padding-left:24px;padding-right:24px;background:rgba(0,197,166,.04)}
+  .xp-when{font-size:13px;color:var(--ink-2);letter-spacing:.02em;padding-top:6px;font-variant-numeric:tabular-nums}
+  .xp-when .now{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:600}
+  .xp-when .now::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,197,166,.55);animation:pulse 1.6s infinite}
+  .xp-role{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.1;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
+  .xp-role .it{font-style:italic;color:var(--green)}
+  .xp-desc{font-size:14.5px;color:var(--ink-2);line-height:1.65;margin:0;max-width:640px}
+  .xp-loc{font-size:12px;letter-spacing:.04em;color:var(--muted);text-align:right;padding-top:8px;text-transform:uppercase;white-space:nowrap;line-height:1.6}
+  .xp-loc .tag{display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;margin-bottom:6px;font-size:11px;color:var(--ink-2)}
+
+  /* PROJECTS */
+  .projects{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+  .proj{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:60px 0;border-bottom:1px solid var(--line);position:relative;transition:padding .35s}
+  .proj-meta-row{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;padding-right:20px}
+  .proj-num{font-size:14px;color:var(--muted);letter-spacing:.04em}
+  .proj-title{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,48px);line-height:1.06;letter-spacing:-.015em;margin:18px 0 28px;color:var(--ink);transition:color .3s}
+  .proj:hover .proj-title{color:var(--green)}
+  .proj-title a{color:inherit;text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s}
+  .proj:hover .proj-title a{background-size:100% 1px}
+  .proj-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:520px}
+  .proj-meta-grid h5{font-size:13px;color:var(--muted);font-weight:500;margin:0 0 6px;letter-spacing:.04em}
+  .proj-meta-grid p{margin:0;font-size:15px;color:var(--ink);line-height:1.5}
+  .proj-image{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--bg-2);position:relative;cursor:pointer;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .proj-image::before{content:"";position:absolute;inset:0;background:var(--proj-bg);background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.8,.2,1),filter .5s;z-index:0}
+  .proj-image:hover::before{transform:scale(1.05);filter:saturate(1.2)}
+  .proj-image::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 10%, rgba(255,255,255,.15), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.25));z-index:1}
+  .proj-glyph{position:absolute;right:6%;bottom:-8%;font-family:var(--serif);font-style:italic;font-size:clamp(160px,18vw,260px);color:rgba(255,255,255,.32);line-height:.8;z-index:2;pointer-events:none;transition:transform .6s}
+  .proj-image:hover .proj-glyph{transform:translate(-8px,-12px) rotate(-4deg)}
+  .proj-tag{position:absolute;top:18px;left:18px;z-index:3;padding:7px 14px;background:rgba(255,255,255,.92);border-radius:999px;font-size:11.5px;font-weight:500;letter-spacing:.04em;backdrop-filter:blur(8px)}
+  .proj-arrow-link{position:absolute;top:18px;right:18px;z-index:3;width:44px;height:44px;border-radius:50%;background:#fff;color:#021014;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .35s,background .25s}
+  .proj-image:hover .proj-arrow-link{transform:rotate(-12deg) scale(1.08);background:var(--green);color:#021014}
+  .proj:nth-child(even) .proj-image{order:-1}
+
+  /* TESTIMONIALS */
+  .testimonials-wrap{position:relative;overflow:hidden;margin:0 -40px;padding:0 40px}
+  .test-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
+  .test-track::-webkit-scrollbar{display:none}
+  .test-track:active{cursor:grabbing}
+  .test{flex:0 0 calc(33.33% - 16px);min-width:340px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:36px 32px;display:flex;flex-direction:column;gap:22px;transition:transform .4s,border-color .3s,box-shadow .4s;scroll-snap-align:start}
+  .test:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 30px 60px -28px rgba(0,197,166,.22)}
+  .test-logo{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ink);opacity:.7}
+  .test-quote{font-family:var(--serif);font-size:21px;line-height:1.45;color:var(--ink);margin:0;letter-spacing:-.005em}
+  .test-stars{display:flex;gap:3px;color:var(--green)}
+  .test-author{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
+  .test-avatar{width:46px;height:46px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--green);font-style:italic;flex-shrink:0}
+  .test-author-name{font-weight:500;font-size:14.5px;color:var(--ink);margin-bottom:2px}
+  .test-author-role{font-size:13px;color:var(--muted)}
+  .test-controls{display:flex;justify-content:flex-end;gap:10px;margin-top:32px}
+  .test-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:all .25s}
+  .test-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+  /* CTA */
+  .cta{padding:120px 0;border-top:1px solid var(--line)}
+  .cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,80px);line-height:1.02;letter-spacing:-.02em;margin:0 0 28px;color:var(--ink)}
+  .cta h2 .it{font-style:italic;color:var(--green)}
+  .cta p{font-size:18px;color:var(--ink-2);max-width:480px;margin:0 0 36px;line-height:1.6}
+  .cta-img{aspect-ratio:1/1;border-radius:24px;background:linear-gradient(160deg,#0a2228 0%,#021014 60%,#04181e 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+  .cta-img::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(232,245,250,.07) 1px, transparent 0);background-size:22px 22px;pointer-events:none}
+  .cta-img::after{content:"";position:absolute;width:55%;height:55%;background:radial-gradient(circle, rgba(0,197,166,.22), transparent 65%);bottom:-15%;left:-15%;filter:blur(20px);pointer-events:none}
+
+  .cm-inbox{position:absolute;width:64%;left:50%;top:48%;transform:translate(-50%,-50%) rotate(-2deg);background:#0c2127;border:1px solid rgba(232,245,250,.16);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);animation:cm-float 6s ease-in-out infinite}
+  .cm-inbox .head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;background:rgba(232,245,250,.05);border-bottom:1px solid rgba(232,245,250,.08)}
+  .cm-inbox .head .ti{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+  .cm-inbox .head .ti .ic{width:18px;height:18px;border-radius:5px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#021014}
+  .cm-inbox .head .badge{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:700;display:inline-flex;align-items:center;gap:5px}
+  .cm-inbox .head .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,197,166,.6);animation:pulse 1.6s infinite}
+  .cm-inbox .body{padding:14px}
+  .cm-inbox .from{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,245,250,.55);margin-bottom:6px;font-weight:600}
+  .cm-inbox .subj{font-family:var(--serif);font-size:18px;line-height:1.15;color:var(--ink);margin:0 0 12px;letter-spacing:-.01em}
+  .cm-inbox .subj .it{font-style:italic;color:var(--green)}
+  .cm-inbox .row{height:6px;border-radius:3px;background:rgba(232,245,250,.10);margin-bottom:6px}
+  .cm-inbox .row.w1{width:88%}.cm-inbox .row.w2{width:72%}.cm-inbox .row.w3{width:50%}
+  .cm-inbox .send{margin-top:14px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--green);color:#021014;font-size:11px;font-weight:600;width:fit-content;letter-spacing:.02em}
+
+  .cm-status{position:absolute;top:9%;left:6%;background:rgba(232,245,250,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(232,245,250,.18);border-radius:999px;padding:7px 12px;display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:600;color:var(--ink);letter-spacing:.02em;animation:cm-float-2 7s ease-in-out infinite;transform:rotate(-4deg)}
+  .cm-status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,197,166,.6);animation:pulse 1.6s infinite}
+
+  .cm-react{position:absolute;bottom:10%;right:7%;background:#0c2127;border:1px solid rgba(232,245,250,.14);border-radius:14px;padding:10px 14px;box-shadow:0 20px 40px -16px rgba(0,0,0,.55);animation:cm-float-3 5.5s ease-in-out infinite;transform:rotate(5deg);display:flex;align-items:center;gap:8px}
+  .cm-react .av{width:24px;height:24px;border-radius:50%;background:url('assets/mohamed.jpg') center/cover;border:1.5px solid var(--green)}
+  .cm-react .txt{font-size:11px;color:var(--ink);font-weight:500}
+  .cm-react .txt b{color:var(--green);font-weight:700}
+
+  .cm-typing{position:absolute;top:14%;right:9%;background:#0c2127;border:1px solid rgba(232,245,250,.14);border-radius:18px 18px 18px 4px;padding:9px 14px;box-shadow:0 18px 36px -14px rgba(0,0,0,.55);animation:cm-float-4 6.5s ease-in-out infinite;transform:rotate(4deg);display:flex;align-items:center;gap:5px}
+  .cm-typing .b{width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.45;animation:typing 1.2s ease-in-out infinite}
+  .cm-typing .b:nth-child(2){animation-delay:.18s}
+  .cm-typing .b:nth-child(3){animation-delay:.36s}
+
+  @keyframes cm-float{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-54%) rotate(-2deg)}}
+  @keyframes cm-float-2{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-8px)}}
+  @keyframes cm-float-3{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(5deg) translateY(-10px)}}
+  @keyframes cm-float-4{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-9px)}}
+  @keyframes typing{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+
+  /* FOOTER */
+  .footer{padding:80px 0 36px;border-top:1px solid var(--line);background:var(--bg-2)}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+  .footer-brand .logo{display:inline-block;margin-bottom:16px}
+  .footer-brand .logo svg{height:60px}
+  .footer-brand p{color:var(--ink-2);max-width:400px;font-size:15px;line-height:1.65;margin:0 0 22px}
+  .footer-email{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:4px;font-weight:500}
+  .footer-col h5{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);margin:0 0 18px;letter-spacing:-.01em}
+  .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .footer-col a{color:var(--ink-2);text-decoration:none;font-size:14.5px;transition:color .2s,padding .2s;display:inline-block}
+  .footer-col a:hover{color:var(--green);padding-left:6px}
+  .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;padding-top:32px;color:var(--muted);font-size:13.5px}
+  .footer-socials{display:flex;gap:8px}
+  .footer-socials a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);text-decoration:none;font-size:13px;transition:all .25s}
+  .footer-socials a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateY(-2px)}
+
+  /* RESPONSIVE */
+  @media (max-width:1080px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .services{grid-template-columns:repeat(2,1fr)}
+    .about-grid{grid-template-columns:1fr;gap:28px}
+    .process-wrap{grid-template-columns:1fr;gap:40px}
+    .process-img{max-width:480px;margin:0 auto}
+    .cta-grid{grid-template-columns:1fr}
+    .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  }
+  @media (max-width:780px){
+    .topbar-loc span:first-child{display:none}
+    .nav-links{display:none}
+    .section{padding:80px 0}
+    .services{grid-template-columns:1fr}
+    .xp-row,.xp-row:hover{grid-template-columns:1fr;gap:6px;padding:28px 0}
+    .xp-loc{text-align:left}
+    .proj,.proj:nth-child(even){grid-template-columns:1fr;gap:28px;padding:40px 0}
+    .proj:nth-child(even) .proj-image{order:0}
+    .test{flex-basis:88%;min-width:280px}
+    .footer-top{grid-template-columns:1fr;gap:36px}
+    .hero-actions{gap:14px}
+    .btn{padding:14px 22px}
+    .photo-tag.tl{left:0}
+    .photo-tag.tr{right:0}
+  }
+
+
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container topbar-row">
+    <a href="https://mail.google.com/mail/?view=cm&amp;to=mohamedashrafud@gmail.com&amp;su=Project%20Inquiry" target="_blank" rel="noreferrer">
+      <span class="topbar-label">Email:</span>mohamedashrafud@gmail.com
+    </a>
+    <div class="topbar-loc">
+      <span><span class="topbar-label">Location:</span>Alexandria, Egypt</span>
+      <span><span class="topbar-label">Local time:</span><b class="topbar-time" id="clock"></b></span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="logo"><svg width="152" height="123" viewBox="0 0 152 123" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" width="50" height="3" fill="#A8C5D2"/><path d="M5.5625 24H22.25L39.875 67H40.625L58.25 24H74.9375V88H61.8125V46.3437H61.2813L44.7188 87.6875H35.7813L19.2188 46.1875H18.6875V88H5.5625V24Z" fill="#E8F5FA"/><path d="M144.375 56C144.375 62.9792 143.052 68.9167 140.406 73.8125C137.781 78.7083 134.198 82.4479 129.656 85.0312C125.135 87.5937 120.052 88.875 114.406 88.875C108.719 88.875 103.615 87.5833 99.0938 85C94.5729 82.4167 91 78.6771 88.375 73.7813C85.75 68.8854 84.4375 62.9583 84.4375 56C84.4375 49.0208 85.75 43.0833 88.375 38.1875C91 33.2917 94.5729 29.5625 99.0938 27C103.615 24.4167 108.719 23.125 114.406 23.125C120.052 23.125 125.135 24.4167 129.656 27C134.198 29.5625 137.781 33.2917 140.406 38.1875C143.052 43.0833 144.375 49.0208 144.375 56ZM130.656 56C130.656 51.4792 129.979 47.6667 128.625 44.5625C127.292 41.4583 125.406 39.1042 122.969 37.5C120.531 35.8958 117.677 35.0938 114.406 35.0938C111.135 35.0938 108.281 35.8958 105.844 37.5C103.406 39.1042 101.51 41.4583 100.156 44.5625C98.8229 47.6667 98.1563 51.4792 98.1563 56C98.1563 60.5208 98.8229 64.3333 100.156 67.4375C101.51 70.5417 103.406 72.8958 105.844 74.5C108.281 76.1042 111.135 76.9062 114.406 76.9062C117.677 76.9062 120.531 76.1042 122.969 74.5C125.406 72.8958 127.292 70.5417 128.625 67.4375C129.979 64.3333 130.656 60.5208 130.656 56Z" fill="#A8C5D2"/><circle cx="148" cy="88" r="4" fill="#A8C5D2"/><rect x="6" y="106" width="140" height="1" fill="#A8C5D2"/><path d="M8.78693 121H6.86932V114.455H8.90199C9.52628 114.455 10.06 114.585 10.5032 114.844C10.9485 115.104 11.2894 115.477 11.5259 115.963C11.7624 116.449 11.8807 117.032 11.8807 117.711C11.8807 118.397 11.7592 118.987 11.5163 119.479C11.2756 119.969 10.924 120.345 10.4616 120.607C10.0014 120.869 9.44318 121 8.78693 121ZM7.46697 120.463H8.75178C9.31428 120.463 9.78516 120.352 10.1644 120.131C10.5437 119.909 10.8281 119.593 11.0178 119.181C11.2074 118.77 11.3022 118.28 11.3022 117.711C11.3001 117.147 11.2063 116.661 11.021 116.254C10.8377 115.847 10.565 115.535 10.2028 115.317C9.84268 115.1 9.39737 114.991 8.86683 114.991H7.46697V120.463ZM17.3293 121V114.455H21.1262V114.991H17.9269V117.456H20.9248V117.993H17.9269V120.463H21.1901V121H17.3293ZM30.227 116.091C30.1908 115.727 30.0299 115.437 29.7444 115.222C29.4589 115.006 29.0999 114.899 28.6673 114.899C28.3627 114.899 28.0942 114.951 27.8619 115.055C27.6318 115.16 27.4507 115.305 27.3186 115.49C27.1887 115.673 27.1237 115.882 27.1237 116.116C27.1237 116.289 27.161 116.44 27.2355 116.57C27.3101 116.7 27.4102 116.812 27.536 116.906C27.6638 116.998 27.8044 117.076 27.9578 117.142C28.1134 117.208 28.27 117.264 28.4276 117.309L29.118 117.507C29.3268 117.564 29.5356 117.638 29.7444 117.727C29.9532 117.817 30.1439 117.93 30.3165 118.066C30.4912 118.2 30.6308 118.365 30.7352 118.561C30.8417 118.755 30.895 118.989 30.895 119.261C30.895 119.611 30.8044 119.925 30.6233 120.204C30.4422 120.483 30.1823 120.705 29.8435 120.869C29.5047 121.031 29.0988 121.112 28.6258 121.112C28.1805 121.112 27.7938 121.038 27.4656 120.891C27.1375 120.742 26.8797 120.537 26.6922 120.275C26.5047 120.012 26.3992 119.709 26.3758 119.364H26.9894C27.0107 119.621 27.096 119.84 27.2451 120.019C27.3943 120.198 27.5882 120.334 27.8268 120.428C28.0654 120.52 28.3318 120.565 28.6258 120.565C28.9518 120.565 29.2416 120.511 29.4951 120.402C29.7508 120.292 29.9511 120.138 30.096 119.942C30.243 119.744 30.3165 119.514 30.3165 119.252C30.3165 119.03 30.259 118.845 30.1439 118.696C30.0289 118.544 29.868 118.418 29.6613 118.315C29.4568 118.213 29.2192 118.123 28.9486 118.044L28.1656 117.814C27.6521 117.66 27.2536 117.448 26.9703 117.178C26.6869 116.907 26.5452 116.562 26.5452 116.142C26.5452 115.79 26.6389 115.482 26.8264 115.215C27.0161 114.947 27.2718 114.738 27.5935 114.589C27.9173 114.437 28.2806 114.362 28.6833 114.362C29.0903 114.362 29.4504 114.436 29.7636 114.586C30.0768 114.735 30.325 114.94 30.5083 115.202C30.6936 115.462 30.7927 115.759 30.8055 116.091H30.227ZM36.9308 114.455V121H36.3332V114.455H36.9308ZM47.1998 116.5C47.1402 116.283 47.0528 116.079 46.9378 115.89C46.8227 115.698 46.68 115.531 46.5095 115.388C46.3412 115.243 46.1462 115.13 45.9246 115.049C45.7052 114.968 45.4601 114.928 45.1895 114.928C44.7634 114.928 44.382 115.038 44.0454 115.26C43.7087 115.482 43.4424 115.801 43.2464 116.219C43.0525 116.636 42.9555 117.139 42.9555 117.727C42.9555 118.313 43.0535 118.815 43.2496 119.233C43.4456 119.65 43.714 119.971 44.055 120.195C44.398 120.416 44.79 120.527 45.2311 120.527C45.6338 120.527 45.9896 120.437 46.2986 120.259C46.6075 120.08 46.8483 119.824 47.0209 119.491C47.1956 119.159 47.2808 118.764 47.2765 118.306L47.4683 118.366H45.3717V117.83H47.8582V118.366C47.8582 118.925 47.7453 119.407 47.5194 119.814C47.2936 120.221 46.9836 120.536 46.5894 120.757C46.1952 120.979 45.7425 121.089 45.2311 121.089C44.6601 121.089 44.1604 120.952 43.7322 120.677C43.3039 120.4 42.9704 120.01 42.7318 119.507C42.4953 119.002 42.377 118.409 42.377 117.727C42.377 117.214 42.4452 116.75 42.5816 116.337C42.718 115.924 42.9108 115.57 43.1601 115.276C43.4115 114.982 43.7087 114.757 44.0518 114.602C44.3948 114.444 44.7741 114.365 45.1895 114.365C45.5475 114.365 45.8746 114.422 46.1707 114.534C46.469 114.647 46.7311 114.803 46.9569 115.001C47.1849 115.197 47.3714 115.424 47.5162 115.682C47.6633 115.937 47.7623 116.21 47.8135 116.5H47.1998ZM58.4396 114.455V121H57.858L53.9908 115.519H53.9396V121H53.342V114.455H53.9205L57.8004 119.942H57.8516V114.455H58.4396Z" fill="#A8C5D2"/></svg></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#work">Projects</a>
+      <a href="#testimonials">Reviews</a>
+    </div>
+    <a href="#contact" class="nav-cta">
+      <span class="pulse"></span>
+      Hire Me
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">Available for select projects · Q2 2026</div>
+      <h1>
+        <span class="word">Designing</span>
+        <span class="word it">calm</span>
+        <span class="word">products</span>
+        <br/>
+        <span class="word">that</span>
+        <span class="word it">just</span>
+        <span class="word">work.</span>
+      </h1>
+      <p class="hero-sub">
+        UI/UX Designer with 3+ years across the full design lifecycle — from user research, IA, and wireframing to high-fidelity Figma prototypes and developer handoff. I leverage AI to move fast and ship scalable, accessible, conversion-driven solutions.
+      </p>
+      <div class="hero-actions">
+        <a href="https://drive.google.com/file/d/1oLpfU9a3Bt9Nz7H_Zo5tWA1Xn3VbwoJu/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-primary">
+          Download Resume
+          <span class="arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="#work" class="btn-text">View my work</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <svg class="squiggle s1" viewBox="0 0 90 50" fill="none">
+        <path d="M2 25 C 12 5, 22 45, 32 25 S 52 5, 62 25 S 82 45, 88 25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="hero-photo">
+        <img src="assets/mohamed-hero.jpg" alt="Mohamed Ashraf" />
+      </div>
+      <div class="photo-tag tl"><span class="dot"></span>Available</div>
+      <div class="photo-tag tr">3+ Years</div>
+      <div class="photo-tag bl">★ 20+ Projects</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="clients-head">Trusted by teams &amp; founders across regions</div>
+  <div class="clients-mask">
+    <div class="clients-track">
+      <span class="client-logo"><span class="mk">★</span>Spaces Contract</span>
+      <span class="client-logo"><span class="mk">★</span>WASA</span>
+      <span class="client-logo"><span class="mk">★</span>Ship-Crew</span>
+      <span class="client-logo"><span class="mk">★</span>Nuqtah</span>
+      <span class="client-logo"><span class="mk">★</span>Mabanyedris</span>
+      <span class="client-logo"><span class="mk">★</span>Alex Web</span>
+      <span class="client-logo"><span class="mk">★</span>Gmind</span>
+      <span class="client-logo"><span class="mk">★</span>Web3 Alliance</span>
+      <!-- duplicate for seamless loop -->
+      <span class="client-logo"><span class="mk">★</span>Spaces Contract</span>
+      <span class="client-logo"><span class="mk">★</span>WASA</span>
+      <span class="client-logo"><span class="mk">★</span>Ship-Crew</span>
+      <span class="client-logo"><span class="mk">★</span>Nuqtah</span>
+      <span class="client-logo"><span class="mk">★</span>Mabanyedris</span>
+      <span class="client-logo"><span class="mk">★</span>Alex Web</span>
+      <span class="client-logo"><span class="mk">★</span>Gmind</span>
+      <span class="client-logo"><span class="mk">★</span>Web3 Alliance</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">
+        A designer who builds <span class="green">calm</span> interfaces and <span class="it">loud</span> ideas — quietly, on time.
+      </h2>
+    </div>
+    <div class="about-grid reveal-stagger">
+      <div class="about-block">
+        <h4>Who I Am</h4>
+        <p>UI/UX designer based in Alexandria, Egypt with 3+ years across hospitality, real estate, maritime SaaS and Web3 — clients in Egypt and Saudi Arabia.</p>
+      </div>
+      <div class="about-block">
+        <h4>What I Do</h4>
+        <p>Full design lifecycle — research, IA, wireframing, high-fidelity prototyping in Figma, design systems, and pixel-perfect handoff to engineering.</p>
+      </div>
+      <div class="about-block">
+        <h4>My Approach</h4>
+        <p>WCAG-aware, Agile-friendly, AI-assisted. Decisions backed by research, executed with restraint, and shipped close to engineers.</p>
+      </div>
+    </div>
+    <div class="about-cta reveal">
+      <a href="#contact" class="btn btn-primary">
+        Let's Work Together
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">My Services</div>
+      <h2 class="section-title">Solutions tailored to <span class="it">your needs</span>.</h2>
+    </div>
+    <div class="services reveal-stagger">
+      <div class="service">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4l3 6.5 7 1-5 5 1.2 7L14 20l-6.2 3.5L9 16.5l-5-5 7-1L14 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="service-title">UI / UX Design</h3>
+        <p class="service-desc">End-to-end product design — research, wireframes, high-fidelity Figma screens and interactive prototypes that ship.</p>
+        <a href="#contact" class="service-arrow" aria-label="Learn more about UI / UX Design">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="5" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h22" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="7.5" r="0.7" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.7" fill="currentColor"/></svg>
+        </div>
+        <h3 class="service-title">Web &amp; Landing</h3>
+        <p class="service-desc">Marketing sites &amp; landing pages — strong typography, clear narrative, conversion-driven, dev-ready hand-off.</p>
+        <a href="#contact" class="service-arrow" aria-label="Learn more about Web & Landing">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="3" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="16" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="16" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="service-title">Design Systems</h3>
+        <p class="service-desc">Figma Auto Layout, variables, design tokens and component libraries built to scale across teams and surfaces.</p>
+        <a href="#contact" class="service-arrow" aria-label="Learn more about Design Systems">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3l2.5 5.5L22 11l-5.5 2.5L14 19l-2.5-5.5L6 11l5.5-2.5L14 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="22" cy="22" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="22" r="1.4" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="service-title">AI-Assisted Design</h3>
+        <p class="service-desc">AI-generated visuals, rapid concept generation, prompt engineering and UX copywriting — without losing taste.</p>
+        <a href="#contact" class="service-arrow" aria-label="Learn more about AI-Assisted Design">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">My Process</div>
+      <h2 class="section-title">A simple, <span class="it">repeatable</span> way of working.</h2>
+    </div>
+    <div class="process-wrap">
+      <div class="process-img reveal">
+        <div class="pm-blob"></div>
+        <div class="pm-browser">
+          <div class="bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot g"></span>
+          </div>
+          <div class="body">
+            <div class="row w1"></div>
+            <div class="row w2"></div>
+            <div class="row w3"></div>
+            <div class="row lg"></div>
+            <div class="grid2">
+              <div class="ph"></div>
+              <div class="ph"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-type">
+          <span class="a">Aa</span>
+          <span class="b">Type · Scale</span>
+        </div>
+        <div class="pm-palette">
+          <div class="lbl">Palette</div>
+          <div class="sw">
+            <div class="s" style="background:#021014"></div>
+            <div class="s" style="background:#00c5a6"></div>
+            <div class="s" style="background:#e8f5fa"></div>
+            <div class="s" style="background:#5a7d8a"></div>
+          </div>
+        </div>
+        <div class="pm-cursor">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor"><path d="M3 2L10 18L12.5 11.5L19 9L3 2Z"/></svg>
+          <span class="tip">Mohamed</span>
+        </div>
+      </div>
+      <div class="process-list reveal-stagger">
+        <div class="process-step">
+          <div class="process-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h4>01 — Discovery &amp; Research</h4>
+            <p>Stakeholder interviews, competitive scan, and synthesizing what success looks like before pixels.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 17l4-4 3 3 7-7 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4>02 — Design &amp; Iteration</h4>
+            <p>Wireframes → high-fidelity → prototype. Tight feedback loops with stakeholders and engineers.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4>03 — Launch &amp; Support</h4>
+            <p>Hand-off, QA in build, and follow-up tweaks based on real-world usage data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section class="section" id="experience" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div>
+        <div class="section-tag">Work Experience</div>
+        <h2 class="section-title">A short <span class="it">timeline</span> of where I've been.</h2>
+      </div>
+      <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">
+        5 roles · 3+ years
+      </div>
+    </div>
+    <div class="xp reveal-stagger">
+      <div class="xp-row">
+        <div class="xp-when"><span class="now">Oct 2025 — Present</span></div>
+        <div>
+          <h3 class="xp-role">UX/UI Designer <span class="it">— Alex Web</span></h3>
+          <p class="xp-desc">Designed and delivered high-fidelity responsive UI for 10+ web and mobile applications, ensuring cross-platform compatibility and WCAG accessibility. Led design-to-development handoff using Figma Auto Layout and a shared component library, and built interactive prototypes for pre-sales demos that helped secure new client contracts.</p>
+        </div>
+        <div class="xp-loc"><span class="tag">Hybrid</span><br/>Egypt</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">Jan 2022 — Present</div>
+        <div>
+          <h3 class="xp-role">Freelance UX/UI Designer <span class="it">— Independent</span></h3>
+          <p class="xp-desc">End-to-end UI/UX design for 5+ projects across e-commerce, SaaS dashboards and marketing landing pages. Managed the full lifecycle independently — UX research, wireframing, hi-fi Figma, and client handoff — for clients across Egypt and Saudi Arabia.</p>
+        </div>
+        <div class="xp-loc"><span class="tag">Freelance</span><br/>Remote</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">Jun 2023 — Jan 2025</div>
+        <div>
+          <h3 class="xp-role">UX/UI Designer <span class="it">— Nuqtah</span></h3>
+          <p class="xp-desc">Designed a comprehensive Web3 artist marketplace serving 1,000+ creators — portfolio website, creator dashboard, and a scalable Figma component library ensuring consistency across surfaces. Collaborated with engineering on Web3 backend integration.</p>
+        </div>
+        <div class="xp-loc"><span class="tag">Remote</span><br/>Saudi Arabia</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">Nov 2022 — Jun 2023</div>
+        <div>
+          <h3 class="xp-role">UX/UI Designer <span class="it">— Alex Web</span></h3>
+          <p class="xp-desc">Created high-quality responsive UI designs for web and mobile across multiple client verticals. Built rapid wireframes and interactive prototypes in Figma to validate concepts early, and partnered with developers using Figma inspect tools for smooth handoff.</p>
+        </div>
+        <div class="xp-loc"><span class="tag">Onsite</span><br/>Egypt</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">May 2022 — Aug 2022</div>
+        <div>
+          <h3 class="xp-role">UX/UI Designer · Intern <span class="it">— Gmind</span></h3>
+          <p class="xp-desc">Assisted senior designers in producing wireframes and UI mockups for client projects in a fast-paced agency environment. Gained professional experience with Figma, Adobe XD, and industry design workflows across web and mobile.</p>
+        </div>
+        <div class="xp-loc"><span class="tag">Internship</span><br/>Egypt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="work" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Featured Projects</div>
+      <h2 class="section-title">A glimpse of <span class="it">recent work</span>.</h2>
+    </div>
+    <div class="projects reveal-stagger">
+      <!-- Project 1 -->
+      <article class="proj">
+        <div>
+          <div class="proj-meta-row">
+            <span class="proj-num">01 / 04</span>
+            <span class="proj-num">2024 · KSA <span style="opacity:.6">· spacescontract.com</span></span>
+          </div>
+          <h3 class="proj-title"><a href="https://spacescontract.com/" target="_blank" rel="noreferrer">Spaces Contract — FF&amp;E solutions platform for a Saudi hospitality contractor.</a></h3>
+          <div class="proj-meta-grid">
+            <div><h5>Role</h5><p>UX/UI Designer</p></div>
+            <div><h5>Deliverables</h5><p>Website · Service Pages · Factory Showcase · Portfolio</p></div>
+          </div>
+        </div>
+        <a href="https://spacescontract.com/" target="_blank" rel="noreferrer" class="proj-image" style="--proj-bg:url('assets/spaces-contract.png')">
+          <span class="proj-tag">Website</span>
+          <span class="proj-arrow-link" aria-label="View Spaces Contract">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </article>
+      <!-- Project 2 -->
+      <article class="proj">
+        <div>
+          <div class="proj-meta-row">
+            <span class="proj-num">02 / 04</span>
+            <span class="proj-num">2024 · Egypt <span style="opacity:.6">· ship-crew.com</span></span>
+          </div>
+          <h3 class="proj-title"><a href="https://ship-crew.com/" target="_blank" rel="noreferrer">Ship-Crew — Maritime crew recruitment &amp; staffing platform.</a></h3>
+          <div class="proj-meta-grid">
+            <div><h5>Role</h5><p>UX/UI Designer</p></div>
+            <div><h5>Deliverables</h5><p>Research · IA · Wireframes · Hi-Fi Figma</p></div>
+          </div>
+        </div>
+        <a href="https://ship-crew.com/" target="_blank" rel="noreferrer" class="proj-image" style="--proj-bg:url('assets/ship-crew.png')">
+          <span class="proj-tag">Logistics Platform</span>
+          <span class="proj-arrow-link" aria-label="View Ship-Crew">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </article>
+      <!-- Project 3 -->
+      <article class="proj">
+        <div>
+          <div class="proj-meta-row">
+            <span class="proj-num">03 / 04</span>
+            <span class="proj-num">2024 · KSA <span style="opacity:.6">· Web3 Alliance</span></span>
+          </div>
+          <h3 class="proj-title"><a href="https://secured-polygon-616788.framer.app/" target="_blank" rel="noreferrer">WASA — Web3 Alliance of Saudi Arabia conversion-focused landing page.</a></h3>
+          <div class="proj-meta-grid">
+            <div><h5>Role</h5><p>UX/UI Designer</p></div>
+            <div><h5>Deliverables</h5><p>Landing · Visual Identity · Brand Alignment</p></div>
+          </div>
+        </div>
+        <a href="https://secured-polygon-616788.framer.app/" target="_blank" rel="noreferrer" class="proj-image" style="--proj-bg:url('assets/WASA.png')">
+          <span class="proj-tag">Landing Page</span>
+          <span class="proj-arrow-link" aria-label="View WASA">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </article>
+      <!-- Project 4 -->
+      <article class="proj">
+        <div>
+          <div class="proj-meta-row">
+            <span class="proj-num">04 / 04</span>
+            <span class="proj-num">2023 · Egypt <span style="opacity:.6">· mabanyedris.com</span></span>
+          </div>
+          <h3 class="proj-title"><a href="https://mabanyedris.com/" target="_blank" rel="noreferrer">Mabanyedris — Real estate listings platform with property search &amp; lead capture.</a></h3>
+          <div class="proj-meta-grid">
+            <div><h5>Role</h5><p>UX/UI Designer</p></div>
+            <div><h5>Deliverables</h5><p>Search · Filtering · Listing Pages · Forms</p></div>
+          </div>
+        </div>
+        <a href="https://mabanyedris.com/" target="_blank" rel="noreferrer" class="proj-image" style="--proj-bg:url('assets/mabanyedris.png')">
+          <span class="proj-tag">Real Estate</span>
+          <span class="proj-arrow-link" aria-label="View Mabanyedris">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="proj-glyph" aria-hidden="true">◆</span>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div>
+        <div class="section-tag">What Clients Say</div>
+        <h2 class="section-title">Kind words from <span class="it">past clients</span>.</h2>
+      </div>
+      <div class="test-controls">
+        <button class="test-btn" id="test-prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="test-btn" id="test-next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="testimonials-wrap reveal">
+      <div class="test-track" id="test-track">
+        <!-- Testimonial 1 -->
+        <div class="test">
+          <div class="test-logo">Spaces Contract</div>
+          <div class="test-stars" aria-label="5 out of 5 stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="test-quote">"Mohamed translated our brand into a polished, professional online presence — leads improved within the first month."</p>
+          <div class="test-author">
+            <div class="test-avatar">S</div>
+            <div>
+              <div class="test-author-name">S. Al-Otaibi</div>
+              <div class="test-author-role">Marketing Lead, Spaces Contract</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="test">
+          <div class="test-logo">Nuqtah</div>
+          <div class="test-stars" aria-label="5 out of 5 stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="test-quote">"He turned a really fuzzy admin spec into a clean, usable console — and stuck around to make sure it shipped well."</p>
+          <div class="test-author">
+            <div class="test-avatar">S</div>
+            <div>
+              <div class="test-author-name">Sara H.</div>
+              <div class="test-author-role">Product Lead, Nuqtah</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="test">
+          <div class="test-logo">Alex Web</div>
+          <div class="test-stars" aria-label="5 out of 5 stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="test-quote">"Reliable, fast, and obsessed with detail. He's the designer we put in front of our hardest clients."</p>
+          <div class="test-author">
+            <div class="test-avatar">O</div>
+            <div>
+              <div class="test-author-name">Omar A.</div>
+              <div class="test-author-role">Co-founder, Alex Web</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 4 -->
+        <div class="test">
+          <div class="test-logo">Mabanyedris</div>
+          <div class="test-stars" aria-label="5 out of 5 stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="test-quote">"Our listings finally feel premium online. The search and lead-capture flows just work."</p>
+          <div class="test-author">
+            <div class="test-avatar">I</div>
+            <div>
+              <div class="test-author-name">Idris M.</div>
+              <div class="test-author-role">Founder, Mabanyedris</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container cta-grid">
+    <div class="reveal">
+      <h2>Let's create something <span class="it">extraordinary</span> together.</h2>
+      <p>I'm taking on a small number of new projects this quarter — product work, brand-led websites, and quick design audits.</p>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <a href="https://mail.google.com/mail/?view=cm&to=mohamedashrafud@gmail.com&su=Project%20Inquiry" target="_blank" rel="noreferrer" class="btn btn-primary">
+          Start a Project
+          <span class="arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="https://wa.me/201111801673" target="_blank" rel="noreferrer" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.5 14.4c-.3-.2-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7 0-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.6.3-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.1-1.3c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.2.8.8-3.1-.2-.3C3.9 15 3.4 13.5 3.4 12 3.4 7.3 7.3 3.4 12 3.4s8.6 3.9 8.6 8.6c0 4.7-3.9 8.2-8.6 8.2z"/>
+          </svg>
+          WhatsApp
+          <span style="opacity:.65;font-family:var(--sans);font-weight:500;font-size:13px">+20 111 180 1673</span>
+        </a>
+      </div>
+    </div>
+    <div class="cta-img reveal">
+      <div class="cm-status">
+        <span class="dot"></span>
+        Available · Replies within 24h
+      </div>
+      <div class="cm-typing">
+        <span class="b"></span>
+        <span class="b"></span>
+        <span class="b"></span>
+      </div>
+      <div class="cm-inbox">
+        <div class="head">
+          <div class="ti">
+            <span class="ic">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4l6 5 6-5M2 4h12v8H2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            New message
+          </div>
+          <span class="badge">Live</span>
+        </div>
+        <div class="body">
+          <div class="from">From — You</div>
+          <h4 class="subj">Hi Mohamed, I have a <span class="it">project</span> in mind.</h4>
+          <div class="row w1"></div>
+          <div class="row w2"></div>
+          <div class="row w3"></div>
+          <div class="send">
+            Send message
+            <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="cm-react">
+        <span class="av"></span>
+        <span class="txt"><b>+</b> Let's talk →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo"><svg width="152" height="123" viewBox="0 0 152 123" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" width="50" height="3" fill="#A8C5D2"/><path d="M5.5625 24H22.25L39.875 67H40.625L58.25 24H74.9375V88H61.8125V46.3437H61.2813L44.7188 87.6875H35.7813L19.2188 46.1875H18.6875V88H5.5625V24Z" fill="#E8F5FA"/><path d="M144.375 56C144.375 62.9792 143.052 68.9167 140.406 73.8125C137.781 78.7083 134.198 82.4479 129.656 85.0312C125.135 87.5937 120.052 88.875 114.406 88.875C108.719 88.875 103.615 87.5833 99.0938 85C94.5729 82.4167 91 78.6771 88.375 73.7813C85.75 68.8854 84.4375 62.9583 84.4375 56C84.4375 49.0208 85.75 43.0833 88.375 38.1875C91 33.2917 94.5729 29.5625 99.0938 27C103.615 24.4167 108.719 23.125 114.406 23.125C120.052 23.125 125.135 24.4167 129.656 27C134.198 29.5625 137.781 33.2917 140.406 38.1875C143.052 43.0833 144.375 49.0208 144.375 56ZM130.656 56C130.656 51.4792 129.979 47.6667 128.625 44.5625C127.292 41.4583 125.406 39.1042 122.969 37.5C120.531 35.8958 117.677 35.0938 114.406 35.0938C111.135 35.0938 108.281 35.8958 105.844 37.5C103.406 39.1042 101.51 41.4583 100.156 44.5625C98.8229 47.6667 98.1563 51.4792 98.1563 56C98.1563 60.5208 98.8229 64.3333 100.156 67.4375C101.51 70.5417 103.406 72.8958 105.844 74.5C108.281 76.1042 111.135 76.9062 114.406 76.9062C117.677 76.9062 120.531 76.1042 122.969 74.5C125.406 72.8958 127.292 70.5417 128.625 67.4375C129.979 64.3333 130.656 60.5208 130.656 56Z" fill="#A8C5D2"/><circle cx="148" cy="88" r="4" fill="#A8C5D2"/><rect x="6" y="106" width="140" height="1" fill="#A8C5D2"/><path d="M8.78693 121H6.86932V114.455H8.90199C9.52628 114.455 10.06 114.585 10.5032 114.844C10.9485 115.104 11.2894 115.477 11.5259 115.963C11.7624 116.449 11.8807 117.032 11.8807 117.711C11.8807 118.397 11.7592 118.987 11.5163 119.479C11.2756 119.969 10.924 120.345 10.4616 120.607C10.0014 120.869 9.44318 121 8.78693 121ZM7.46697 120.463H8.75178C9.31428 120.463 9.78516 120.352 10.1644 120.131C10.5437 119.909 10.8281 119.593 11.0178 119.181C11.2074 118.77 11.3022 118.28 11.3022 117.711C11.3001 117.147 11.2063 116.661 11.021 116.254C10.8377 115.847 10.565 115.535 10.2028 115.317C9.84268 115.1 9.39737 114.991 8.86683 114.991H7.46697V120.463ZM17.3293 121V114.455H21.1262V114.991H17.9269V117.456H20.9248V117.993H17.9269V120.463H21.1901V121H17.3293ZM30.227 116.091C30.1908 115.727 30.0299 115.437 29.7444 115.222C29.4589 115.006 29.0999 114.899 28.6673 114.899C28.3627 114.899 28.0942 114.951 27.8619 115.055C27.6318 115.16 27.4507 115.305 27.3186 115.49C27.1887 115.673 27.1237 115.882 27.1237 116.116C27.1237 116.289 27.161 116.44 27.2355 116.57C27.3101 116.7 27.4102 116.812 27.536 116.906C27.6638 116.998 27.8044 117.076 27.9578 117.142C28.1134 117.208 28.27 117.264 28.4276 117.309L29.118 117.507C29.3268 117.564 29.5356 117.638 29.7444 117.727C29.9532 117.817 30.1439 117.93 30.3165 118.066C30.4912 118.2 30.6308 118.365 30.7352 118.561C30.8417 118.755 30.895 118.989 30.895 119.261C30.895 119.611 30.8044 119.925 30.6233 120.204C30.4422 120.483 30.1823 120.705 29.8435 120.869C29.5047 121.031 29.0988 121.112 28.6258 121.112C28.1805 121.112 27.7938 121.038 27.4656 120.891C27.1375 120.742 26.8797 120.537 26.6922 120.275C26.5047 120.012 26.3992 119.709 26.3758 119.364H26.9894C27.0107 119.621 27.096 119.84 27.2451 120.019C27.3943 120.198 27.5882 120.334 27.8268 120.428C28.0654 120.52 28.3318 120.565 28.6258 120.565C28.9518 120.565 29.2416 120.511 29.4951 120.402C29.7508 120.292 29.9511 120.138 30.096 119.942C30.243 119.744 30.3165 119.514 30.3165 119.252C30.3165 119.03 30.259 118.845 30.1439 118.696C30.0289 118.544 29.868 118.418 29.6613 118.315C29.4568 118.213 29.2192 118.123 28.9486 118.044L28.1656 117.814C27.6521 117.66 27.2536 117.448 26.9703 117.178C26.6869 116.907 26.5452 116.562 26.5452 116.142C26.5452 115.79 26.6389 115.482 26.8264 115.215C27.0161 114.947 27.2718 114.738 27.5935 114.589C27.9173 114.437 28.2806 114.362 28.6833 114.362C29.0903 114.362 29.4504 114.436 29.7636 114.586C30.0768 114.735 30.325 114.94 30.5083 115.202C30.6936 115.462 30.7927 115.759 30.8055 116.091H30.227ZM36.9308 114.455V121H36.3332V114.455H36.9308ZM47.1998 116.5C47.1402 116.283 47.0528 116.079 46.9378 115.89C46.8227 115.698 46.68 115.531 46.5095 115.388C46.3412 115.243 46.1462 115.13 45.9246 115.049C45.7052 114.968 45.4601 114.928 45.1895 114.928C44.7634 114.928 44.382 115.038 44.0454 115.26C43.7087 115.482 43.4424 115.801 43.2464 116.219C43.0525 116.636 42.9555 117.139 42.9555 117.727C42.9555 118.313 43.0535 118.815 43.2496 119.233C43.4456 119.65 43.714 119.971 44.055 120.195C44.398 120.416 44.79 120.527 45.2311 120.527C45.6338 120.527 45.9896 120.437 46.2986 120.259C46.6075 120.08 46.8483 119.824 47.0209 119.491C47.1956 119.159 47.2808 118.764 47.2765 118.306L47.4683 118.366H45.3717V117.83H47.8582V118.366C47.8582 118.925 47.7453 119.407 47.5194 119.814C47.2936 120.221 46.9836 120.536 46.5894 120.757C46.1952 120.979 45.7425 121.089 45.2311 121.089C44.6601 121.089 44.1604 120.952 43.7322 120.677C43.3039 120.4 42.9704 120.01 42.7318 119.507C42.4953 119.002 42.377 118.409 42.377 117.727C42.377 117.214 42.4452 116.75 42.5816 116.337C42.718 115.924 42.9108 115.57 43.1601 115.276C43.4115 114.982 43.7087 114.757 44.0518 114.602C44.3948 114.444 44.7741 114.365 45.1895 114.365C45.5475 114.365 45.8746 114.422 46.1707 114.534C46.469 114.647 46.7311 114.803 46.9569 115.001C47.1849 115.197 47.3714 115.424 47.5162 115.682C47.6633 115.937 47.7623 116.21 47.8135 116.5H47.1998ZM58.4396 114.455V121H57.858L53.9908 115.519H53.9396V121H53.342V114.455H53.9205L57.8004 119.942H57.8516V114.455H58.4396Z" fill="#A8C5D2"/></svg></a>
+        <p>UI/UX designer based in Alexandria, Egypt. Quietly making software feel better — one screen at a time.</p>
+        <a href="https://mail.google.com/mail/?view=cm&amp;to=mohamedashrafud@gmail.com&amp;su=Project%20Inquiry" target="_blank" rel="noreferrer" class="footer-email">
+          mohamedashrafud@gmail.com →
+        </a>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+201111801673">+20 0111 1801 673</a></li>
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;to=mohamedashrafud@gmail.com&amp;su=Project%20Inquiry" target="_blank" rel="noreferrer">mohamedashrafud@gmail.com</a></li>
+          <li><a href="https://www.behance.net/mohamedasherf" target="_blank" rel="noreferrer">Behance ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/mohamed-ashraf-8b64a710a/" target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Mohamed Ashraf. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://www.behance.net/mohamedasherf" target="_blank" rel="noreferrer" aria-label="Behance">Be</a>
+        <a href="https://www.linkedin.com/in/mohamed-ashraf-8b64a710a/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;to=mohamedashrafud@gmail.com&amp;su=Project%20Inquiry" target="_blank" rel="noreferrer" aria-label="Email">@</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Clock (Cairo timezone)
+  function updateClock() {
+    var el = document.getElementById('clock');
+    if (!el) return;
+    el.textContent = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Cairo'
+    }).format(new Date());
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
+
+  // Sticky nav scroll state
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(function(el) { io.observe(el); });
+
+  // Testimonial carousel
+  var track = document.getElementById('test-track');
+  var prevBtn = document.getElementById('test-prev');
+  var nextBtn = document.getElementById('test-next');
+  function scrollTrack(dir) {
+    var card = track.querySelector('.test');
+    if (!card) return;
+    var w = card.offsetWidth + 24;
+    track.scrollBy({ left: dir * w, behavior: 'smooth' });
+  }
+  prevBtn.addEventListener('click', function() { scrollTrack(-1); });
+  nextBtn.addEventListener('click', function() { scrollTrack(1); });
+
+})();
+</script>
+</body>
+</html>
