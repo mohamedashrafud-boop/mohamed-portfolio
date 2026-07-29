@@ -112,12 +112,11 @@
   /* CLIENTS LOGOS STRIP */
   .clients{padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .clients-head{text-align:center;color:var(--muted);font-size:14px;letter-spacing:.02em;margin-bottom:32px}
-  .clients-track{display:flex;align-items:center;gap:88px;animation:scroll 32s linear infinite;width:max-content}
+  .clients-track{display:flex;align-items:center;gap:72px;animation:scroll 32s linear infinite;width:max-content}
   .clients-mask{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
   @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .client-logo{font-family:var(--serif);font-style:italic;font-size:32px;color:var(--ink);opacity:.75;white-space:nowrap;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:10px;transition:opacity .3s}
-  .client-logo:hover{opacity:1}
-  .client-logo .mk{font-size:14px;font-style:normal;color:var(--muted);font-family:var(--sans);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+  .client-logo-img{height:44px;width:auto;max-height:52px;object-fit:contain;opacity:.75;filter:brightness(0) invert(1);transition:opacity .3s, transform .3s}
+  .client-logo-img:hover{opacity:1;transform:scale(1.06)}
 
   /* SECTIONS */
   .section{padding:120px 0;position:relative}
@@ -242,23 +241,13 @@
   .proj-image:hover .proj-arrow-link{transform:rotate(-12deg) scale(1.08);background:var(--green);color:#021014}
   .proj:nth-child(even) .proj-image{order:-1}
 
-  /* TESTIMONIALS */
-  .testimonials-wrap{position:relative;overflow:hidden;margin:0 -40px;padding:0 40px}
-  .test-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
-  .test-track::-webkit-scrollbar{display:none}
-  .test-track:active{cursor:grabbing}
-  .test{flex:0 0 calc(33.33% - 16px);min-width:340px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:36px 32px;display:flex;flex-direction:column;gap:22px;transition:transform .4s,border-color .3s,box-shadow .4s;scroll-snap-align:start}
-  .test:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 30px 60px -28px rgba(0,197,166,.22)}
-  .test-logo{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ink);opacity:.7}
-  .test-quote{font-family:var(--serif);font-size:21px;line-height:1.45;color:var(--ink);margin:0;letter-spacing:-.005em}
-  .test-stars{display:flex;gap:3px;color:var(--green)}
-  .test-author{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
-  .test-avatar{width:46px;height:46px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--green);font-style:italic;flex-shrink:0}
-  .test-author-name{font-weight:500;font-size:14.5px;color:var(--ink);margin-bottom:2px}
-  .test-author-role{font-size:13px;color:var(--muted)}
-  .test-controls{display:flex;justify-content:flex-end;gap:10px;margin-top:32px}
-  .test-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:all .25s}
-  .test-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  /* STATS */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .stat-card{position:relative;padding:36px 28px;border-radius:20px;background:var(--card);border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s;overflow:hidden}
+  .stat-card:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:0 30px 60px -25px rgba(0,197,166,.2)}
+  .stat-num{font-family:var(--serif);font-size:clamp(44px,4vw,64px);line-height:1;color:var(--green);margin-bottom:12px;font-style:italic}
+  .stat-label{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+  .stat-desc{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0}
 
   /* CTA */
   .cta{padding:120px 0;border-top:1px solid var(--line)}
@@ -323,6 +312,7 @@
   @media (max-width:1080px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
     .services{grid-template-columns:repeat(2,1fr)}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
     .about-grid{grid-template-columns:1fr;gap:28px}
     .process-wrap{grid-template-columns:1fr;gap:40px}
     .process-img{max-width:480px;margin:0 auto}
@@ -334,11 +324,11 @@
     .nav-links{display:none}
     .section{padding:80px 0}
     .services{grid-template-columns:1fr}
+    .stats-grid{grid-template-columns:1fr}
     .xp-row,.xp-row:hover{grid-template-columns:1fr;gap:6px;padding:28px 0}
     .xp-loc{text-align:left}
     .proj,.proj:nth-child(even){grid-template-columns:1fr;gap:28px;padding:40px 0}
     .proj:nth-child(even) .proj-image{order:0}
-    .test{flex-basis:88%;min-width:280px}
     .footer-top{grid-template-columns:1fr;gap:36px}
     .hero-actions{gap:14px}
     .btn{padding:14px 22px}
@@ -373,7 +363,7 @@
       <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#work">Projects</a>
-      <a href="#testimonials">Reviews</a>
+      <a href="#stats">Impact</a>
     </div>
     <a href="#contact" class="nav-cta">
       <span class="pulse"></span>
@@ -397,7 +387,7 @@
         <span class="word">work.</span>
       </h1>
       <p class="hero-sub">
-        UI/UX Designer with 3+ years across the full design lifecycle — from user research, IA, and wireframing to high-fidelity Figma prototypes and developer handoff. I leverage AI to move fast and ship scalable, accessible, conversion-driven solutions.
+        UI/UX Designer with 4+ years across the full design lifecycle — from user research, IA, and wireframing to high-fidelity Figma prototypes and developer handoff. I leverage AI to move fast and ship scalable, accessible, conversion-driven solutions.
       </p>
       <div class="hero-actions">
         <a href="https://drive.google.com/file/d/1oLpfU9a3Bt9Nz7H_Zo5tWA1Xn3VbwoJu/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-primary">
@@ -419,7 +409,7 @@
         <img src="assets/mohamed-hero.jpg" alt="Mohamed Ashraf" />
       </div>
       <div class="photo-tag tl"><span class="dot"></span>Available</div>
-      <div class="photo-tag tr">3+ Years</div>
+      <div class="photo-tag tr">4+ Years</div>
       <div class="photo-tag bl">★ 20+ Projects</div>
     </div>
   </div>
@@ -430,23 +420,31 @@
   <div class="clients-head">Trusted by teams &amp; founders across regions</div>
   <div class="clients-mask">
     <div class="clients-track">
-      <span class="client-logo"><span class="mk">★</span>Spaces Contract</span>
-      <span class="client-logo"><span class="mk">★</span>WASA</span>
-      <span class="client-logo"><span class="mk">★</span>Ship-Crew</span>
-      <span class="client-logo"><span class="mk">★</span>Nuqtah</span>
-      <span class="client-logo"><span class="mk">★</span>Mabanyedris</span>
-      <span class="client-logo"><span class="mk">★</span>Alex Web</span>
-      <span class="client-logo"><span class="mk">★</span>Gmind</span>
-      <span class="client-logo"><span class="mk">★</span>Web3 Alliance</span>
+      <img src="assets/logos/Alex web.svg" alt="Alex Web" class="client-logo-img" />
+      <img src="assets/logos/nuqtah.svg" alt="Nuqtah" class="client-logo-img" />
+      <img src="assets/logos/1K.svg" alt="1K" class="client-logo-img" />
+      <img src="assets/logos/ANPFL.svg" alt="ANPFL" class="client-logo-img" />
+      <img src="assets/logos/Daleel.svg" alt="Daleel" class="client-logo-img" />
+      <img src="assets/logos/Hawala.svg" alt="Hawala" class="client-logo-img" />
+      <img src="assets/logos/Majlis-Alsharakah.svg" alt="Majlis Alsharakah" class="client-logo-img" />
+      <img src="assets/logos/Peinture website.svg" alt="Peinture" class="client-logo-img" />
+      <img src="assets/logos/Rayh.svg" alt="Rayh" class="client-logo-img" />
+      <img src="assets/logos/saad.svg" alt="Saad" class="client-logo-img" />
+      <img src="assets/logos/Sandbox.svg" alt="Sandbox" class="client-logo-img" />
+      <img src="assets/logos/Wasa.svg" alt="Wasa" class="client-logo-img" />
       <!-- duplicate for seamless loop -->
-      <span class="client-logo"><span class="mk">★</span>Spaces Contract</span>
-      <span class="client-logo"><span class="mk">★</span>WASA</span>
-      <span class="client-logo"><span class="mk">★</span>Ship-Crew</span>
-      <span class="client-logo"><span class="mk">★</span>Nuqtah</span>
-      <span class="client-logo"><span class="mk">★</span>Mabanyedris</span>
-      <span class="client-logo"><span class="mk">★</span>Alex Web</span>
-      <span class="client-logo"><span class="mk">★</span>Gmind</span>
-      <span class="client-logo"><span class="mk">★</span>Web3 Alliance</span>
+      <img src="assets/logos/Alex web.svg" alt="Alex Web" class="client-logo-img" />
+      <img src="assets/logos/nuqtah.svg" alt="Nuqtah" class="client-logo-img" />
+      <img src="assets/logos/1K.svg" alt="1K" class="client-logo-img" />
+      <img src="assets/logos/ANPFL.svg" alt="ANPFL" class="client-logo-img" />
+      <img src="assets/logos/Daleel.svg" alt="Daleel" class="client-logo-img" />
+      <img src="assets/logos/Hawala.svg" alt="Hawala" class="client-logo-img" />
+      <img src="assets/logos/Majlis-Alsharakah.svg" alt="Majlis Alsharakah" class="client-logo-img" />
+      <img src="assets/logos/Peinture website.svg" alt="Peinture" class="client-logo-img" />
+      <img src="assets/logos/Rayh.svg" alt="Rayh" class="client-logo-img" />
+      <img src="assets/logos/saad.svg" alt="Saad" class="client-logo-img" />
+      <img src="assets/logos/Sandbox.svg" alt="Sandbox" class="client-logo-img" />
+      <img src="assets/logos/Wasa.svg" alt="Wasa" class="client-logo-img" />
     </div>
   </div>
 </section>
@@ -463,7 +461,7 @@
     <div class="about-grid reveal-stagger">
       <div class="about-block">
         <h4>Who I Am</h4>
-        <p>UI/UX designer with 3+ years across hospitality, real estate, maritime SaaS and Web3 — working with clients across Egypt and Saudi Arabia.</p>
+        <p>UI/UX designer with 4+ years across hospitality, real estate, maritime SaaS and Web3 — working with clients across Egypt and Saudi Arabia.</p>
       </div>
       <div class="about-block">
         <h4>What I Do</h4>
@@ -626,7 +624,7 @@
         <h2 class="section-title">A short <span class="it">timeline</span> of where I've been.</h2>
       </div>
       <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">
-        5 roles · 3+ years
+        5 roles · 4+ years
       </div>
     </div>
     <div class="xp reveal-stagger">
@@ -767,105 +765,39 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section" id="testimonials" style="padding-top:0">
+<!-- KEY IMPACT / STATS -->
+<section class="section" id="stats" style="padding-top:0">
   <div class="container">
-    <div class="section-head reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap">
-      <div>
-        <div class="section-tag">What Clients Say</div>
-        <h2 class="section-title">Kind words from <span class="it">past clients</span>.</h2>
-      </div>
-      <div class="test-controls">
-        <button class="test-btn" id="test-prev" aria-label="Previous">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="test-btn" id="test-next" aria-label="Next">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
+    <div class="section-head reveal">
+      <div class="section-tag">Key Metrics</div>
+      <h2 class="section-title">Measurable <span class="green">impact</span> driven by thoughtful design.</h2>
     </div>
-    <div class="testimonials-wrap reveal">
-      <div class="test-track" id="test-track">
-        <!-- Testimonial 1 -->
-        <div class="test">
-          <div class="test-logo">Spaces Contract</div>
-          <div class="test-stars" aria-label="5 out of 5 stars">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="test-quote">"Mohamed translated our brand into a polished, professional online presence — leads improved within the first month."</p>
-          <div class="test-author">
-            <div class="test-avatar">S</div>
-            <div>
-              <div class="test-author-name">S. Al-Otaibi</div>
-              <div class="test-author-role">Marketing Lead, Spaces Contract</div>
-            </div>
-          </div>
-        </div>
-        <!-- Testimonial 2 -->
-        <div class="test">
-          <div class="test-logo">Nuqtah</div>
-          <div class="test-stars" aria-label="5 out of 5 stars">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="test-quote">"He turned a really fuzzy admin spec into a clean, usable console — and stuck around to make sure it shipped well."</p>
-          <div class="test-author">
-            <div class="test-avatar">S</div>
-            <div>
-              <div class="test-author-name">Sara H.</div>
-              <div class="test-author-role">Product Lead, Nuqtah</div>
-            </div>
-          </div>
-        </div>
-        <!-- Testimonial 3 -->
-        <div class="test">
-          <div class="test-logo">Alex Web</div>
-          <div class="test-stars" aria-label="5 out of 5 stars">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="test-quote">"Reliable, fast, and obsessed with detail. He's the designer we put in front of our hardest clients."</p>
-          <div class="test-author">
-            <div class="test-avatar">O</div>
-            <div>
-              <div class="test-author-name">Omar A.</div>
-              <div class="test-author-role">Co-founder, Alex Web</div>
-            </div>
-          </div>
-        </div>
-        <!-- Testimonial 4 -->
-        <div class="test">
-          <div class="test-logo">Mabanyedris</div>
-          <div class="test-stars" aria-label="5 out of 5 stars">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" stroke="currentColor" stroke-width="1.4"><path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.9 3.9L7 10l-3.5 2 .9-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke-linejoin="round"/></svg>
-          </div>
-          <p class="test-quote">"Our listings finally feel premium online. The search and lead-capture flows just work."</p>
-          <div class="test-author">
-            <div class="test-avatar">I</div>
-            <div>
-              <div class="test-author-name">Idris M.</div>
-              <div class="test-author-role">Founder, Mabanyedris</div>
-            </div>
-          </div>
-        </div>
+    <div class="stats-grid reveal-stagger">
+      <div class="stat-card">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Experience</div>
+        <p class="stat-desc">Crafting digital products, design systems, and Web3/SaaS solutions across Egypt &amp; KSA.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Projects Delivered</div>
+        <p class="stat-desc">End-to-end UX/UI lifecycle for Web3 marketplaces, logistics SaaS, and real estate portals.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Web &amp; Mobile Apps</div>
+        <p class="stat-desc">High-fidelity responsive interfaces built with Figma Auto Layout &amp; WCAG compliance.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Industries Covered</div>
+        <p class="stat-desc">E-commerce, Maritime Logistics, Web3, Real Estate &amp; Hospitality across Egypt &amp; KSA.</p>
       </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- CTA -->
 <section class="cta" id="contact">
@@ -953,7 +885,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#work">Projects</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#stats">Impact</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1010,18 +942,7 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(function(el) { io.observe(el); });
 
-  // Testimonial carousel
-  var track = document.getElementById('test-track');
-  var prevBtn = document.getElementById('test-prev');
-  var nextBtn = document.getElementById('test-next');
-  function scrollTrack(dir) {
-    var card = track.querySelector('.test');
-    if (!card) return;
-    var w = card.offsetWidth + 24;
-    track.scrollBy({ left: dir * w, behavior: 'smooth' });
-  }
-  prevBtn.addEventListener('click', function() { scrollTrack(-1); });
-  nextBtn.addEventListener('click', function() { scrollTrack(1); });
+
 
 })();
 </script>
